@@ -1,0 +1,16 @@
+{
+    "id": "me",
+    "name": "MySocial",
+    "description": "Bring some social media features to Azuriom",
+    "version": "2024W24-A001",
+    "url": "https://zibuu.ru",
+    "authors": [
+        "Kissadere",
+        "ChatGPT-4o"
+    ],
+    "azuriom_api": "1.1.0",
+    "providers": [
+        "\\Azuriom\\Plugin\\Me\\Providers\\MeServiceProvider",
+        "\\Azuriom\\Plugin\\Me\\Providers\\RouteServiceProvider"
+    ]
+}
