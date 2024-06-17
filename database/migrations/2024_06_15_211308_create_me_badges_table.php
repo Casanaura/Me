@@ -14,6 +14,7 @@ return new class extends Migration
             $table->text('badge_img');
             $table->string('badge_name', 64);
             $table->string('badge_desc', 128);
+            $table->enum('badge_type', ['Common', 'Uncommon', 'Rare', 'Mythic', 'Legendary', 'Limited Edition'])->default('Common');
             $table->timestamps();
         });
     }

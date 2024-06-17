@@ -2,6 +2,13 @@
 
 @section('title', $user->name . ' - Inventory')
 
+@push('styles')
+        <link href="{{ plugin_asset('me', 'css/rarity.css') }}" rel="stylesheet">
+@endpush
+
+@push('scripts')
+@endpush
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -13,13 +20,29 @@
                 <div class="card-body">
                     <div class="row">
                         @foreach($inventoryItems as $item)
-                            <div class="col-6 col-md-3 mb-3 d-flex flex-column align-items-center">
-                                <div class="inventory-container {{ str_replace(' ', '', strtolower($item->type)) }}" style="width: 80px; height: 80px; border: 1px solid #dee2e6; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;">
-                                    <img src="{{ $item->icon }}" alt="{{ $item->name }}" class="img-fluid" style="max-width: 60px; max-height: 60px;">
+                            @php
+                                $rarityClass = strtolower(str_replace(' ', '', $item->type));
+                            @endphp
+                            <div class="col-md-3 mb-4">
+                                <div class="card h-100 rarity-container {{ str_replace(' ', '', strtolower($item->type)) }}">
+                                    <div class="row no-gutters h-100">
+                                        <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                            <img src="{{ $item->icon }}" alt="{{ $item->name }}" class="img-fluid p-2">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $item->name }}</h5>
+                                                <p class="card-text">{{ $item->description }}</p>
+                                                <p class="card-text"><small class="text-muted">{{ $item->created_at }}</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <small>{{ $item->name }}</small>
                             </div>
                         @endforeach
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        {{ $inventoryItems->links() }}
                     </div>
                     <div class="text-right mt-2">
                         <a href="{{ url('/me/' . $user->name) }}" class="text-primary" style="cursor: pointer;">Volver al perfil del usuario</a>

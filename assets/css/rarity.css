@@ -1,0 +1,23 @@
+.rarity-container.common {
+    background-color: #d3d3d3;
+}
+
+.rarity-container.uncommon {
+    background-color: #d9fcd9;
+}
+
+.rarity-container.rare {
+    background-color: #c0d6ed;
+}
+
+.rarity-container.mythic {
+    background-color: #e2d4ff;
+}
+
+.rarity-container.legendary {
+    background-color: #ffebc5;
+}
+
+.rarity-container.limitededition {
+    background-color: #ffbcbc;
+}

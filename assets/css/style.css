@@ -1,23 +1,58 @@
-.inventory-container.common {
-    background-color: #d3d3d3;
+.cover-photo {
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    position: relative;
 }
 
-.inventory-container.uncommon {
-    background-color: #9ad79a;
+.avatar-wrapper {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.inventory-container.rare {
-    background-color: #88aed3;
+.card-body.p-0 {
+    padding: 0 !important;
 }
 
-.inventory-container.mythic {
-    background-color: #bcabe0;
+.user-info {
+    padding: 70px 20px 20px;
 }
 
-.inventory-container.legendary {
-    background-color: #fad899;
+.mt-4.mt-md-0 {
+    margin-top: 1.5rem !important;
+    margin-top: 0 !important;
 }
 
-.inventory-container.limitededition {
-    background-color: #ff8383;
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.rarity-container img {
+    max-width: 60px;
+    max-height: 60px;
+}
+
+.publication, .comment {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.publication img, .comment img {
+    border-radius: 50%;
+}
+
+.publication p, .comment p {
+    margin: 0;
+}
+
+.publication small, .comment small {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.publication hr, .comment hr {
+    margin: 10px 0;
 }
