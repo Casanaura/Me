@@ -67,12 +67,19 @@
                 </div>
                 <div class="card-body">
                     @foreach($badges as $badge)
-                        <div class="badge">
-                            <p><strong>{{ $badge->badge_name }}</strong></p>
-                            <p>{{ $badge->badge_desc }}</p>
+                        <div class="row mb-2">
+                            <div class="col-4 d-flex align-items-center justify-content-center">
+                                <img src="{{ $badge->badge_img }}" alt="{{ $badge->badge_name }}" class="img-fluid">
+                            </div>
+                            <div class="col-8 d-flex flex-column justify-content-center">
+                                <p><strong>{{ $badge->badge_name }}</strong></p>
+                                <p>{{ $badge->badge_desc }}</p>
+                            </div>
                         </div>
-                        <hr>
                     @endforeach
+                    <div class="text-right mt-2">
+                        <a href="{{ url('/me/' . $user->name . '/badges') }}" class="text-primary" style="cursor: pointer;">View All Badges</a>
+                    </div>
                 </div>
             </div>
             <div class="card mt-4">

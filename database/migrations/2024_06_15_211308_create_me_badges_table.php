@@ -10,7 +10,8 @@ return new class extends Migration
     {
         Schema::create('me_badges', function (Blueprint $table) {
             $table->id();
-            $table->string('badge_code', 64);
+            $table->string('badge_code', 16);
+            $table->text('badge_img');
             $table->string('badge_name', 64);
             $table->string('badge_desc', 128);
             $table->timestamps();

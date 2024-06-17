@@ -1,0 +1,23 @@
+.inventory-container.common {
+    background-color: #d3d3d3;
+}
+
+.inventory-container.uncommon {
+    background-color: #9ad79a;
+}
+
+.inventory-container.rare {
+    background-color: #88aed3;
+}
+
+.inventory-container.mythic {
+    background-color: #bcabe0;
+}
+
+.inventory-container.legendary {
+    background-color: #fad899;
+}
+
+.inventory-container.limitededition {
+    background-color: #ff8383;
+}

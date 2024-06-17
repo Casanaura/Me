@@ -22,4 +22,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MeHomeController::class, 'index']);
-Route::get('/{username}', [UserProfileController::class, 'show'])->name('user.profile');
+
+// Perfil de usuario
+Route::get('/{username}', [UserProfileController::class, 'show'])->name('me.userprofile');
+Route::get('/{username}/badges', [UserProfileController::class, 'badges'])->name('me.userbadges');
+Route::get('/{username}/inventory', [UserProfileController::class, 'showInventory'])->name('me.userinventory');

@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class UserProfileController extends Controller
 {
+    /* 
+    | Esta funcion nos permite visualizar el perfil
+    | de un usuario.
+    |
+    | me/userName
+    */
     public function show($username)
     {
         $user = User::where('name', $username)->firstOrFail();
@@ -26,14 +32,18 @@ class UserProfileController extends Controller
         $inventoryItems = DB::table('me_inventory_users')
             ->join('me_catalogue', 'me_inventory_users.item_id', '=', 'me_catalogue.id')
             ->where('me_inventory_users.user_id', $user->id)
+            ->orderBy('me_inventory_users.created_at', 'desc')
+            ->limit(6)
             ->get(['me_catalogue.*', 'me_inventory_users.item_fingerprint']);
 
-        $badges = DB::table('me_users_badges')
+            $badges = DB::table('me_users_badges')
             ->join('me_badges', 'me_users_badges.badge_id', '=', 'me_badges.id')
             ->where('me_users_badges.owner', $user->id)
-            ->get(['me_badges.*']);
+            ->orderBy('me_users_badges.created_at', 'desc')
+            ->limit(10)
+            ->get(['me_badges.*', 'me_users_badges.created_at']);
 
-        return view('me::userprofile', [
+        return view('me::profile.userprofile', [
             'user' => $user,
             'role' => $role,
             'publications' => $publications,
@@ -41,5 +51,40 @@ class UserProfileController extends Controller
             'inventoryItems' => $inventoryItems,
             'badges' => $badges,
         ]);
+        
+    }
+
+    /* 
+    | Esta funcion nos permite enlistar todas las placas
+    | de un usuario.
+    |
+    | me/userName/badges
+    */
+    public function badges($username)
+    {
+        $user = User::where('name', $username)->firstOrFail();
+
+        $badges = DB::table('me_users_badges')
+            ->join('me_badges', 'me_users_badges.badge_id', '=', 'me_badges.id')
+            ->where('me_users_badges.owner', $user->id)
+            ->orderBy('me_users_badges.created_at', 'desc')
+            ->get(['me_badges.*']);
+
+        return view('me::profile.userbadges', [
+            'user' => $user,
+            'badges' => $badges,
+        ]);
+    }
+
+    public function showInventory($username)
+    {
+        $user = User::where('name', $username)->firstOrFail();
+        $inventoryItems = DB::table('me_inventory_users')
+            ->join('me_catalogue', 'me_inventory_users.item_id', '=', 'me_catalogue.id')
+            ->where('me_inventory_users.user_id', $user->id)
+            ->orderBy('me_inventory_users.created_at', 'desc')
+            ->get(['me_catalogue.*', 'me_inventory_users.item_fingerprint']);
+    
+        return view('me::profile.userinventory', ['user' => $user, 'inventoryItems' => $inventoryItems]);
     }
 }
