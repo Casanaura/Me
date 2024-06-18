@@ -5,6 +5,7 @@ use Azuriom\Plugin\Me\Controllers\MeHomeController;
 
 // Perfil de usuario
 use Azuriom\Plugin\Me\Controllers\UserProfileController;
+use Azuriom\Plugin\Me\Controllers\UpdateProfileController;
 
 // No fucking idea
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,9 @@ Route::get('/', [MeHomeController::class, 'index']);
 Route::get('/{username}', [UserProfileController::class, 'show'])->name('me.userprofile');
 Route::get('/{username}/badges', [UserProfileController::class, 'badges'])->name('me.userbadges');
 Route::get('/{username}/inventory', [UserProfileController::class, 'showInventory'])->name('me.userinventory');
+
+// Editar perfil de usuario
+Route::middleware('auth')->group(function () {
+    Route::get('/myprofile', [UpdateProfileController::class, 'editProfile'])->name('me.editProfile');
+    Route::post('/myprofile', [UpdateProfileController::class, 'updateProfile'])->name('me.updateProfile');
+});
